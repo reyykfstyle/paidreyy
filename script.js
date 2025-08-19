@@ -1,54 +1,60 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const body = document.body;
+  const canvas = document.getElementById("sparkCanvas");
+  const ctx = canvas.getContext("2d");
 
-  // 🔥 Brutal Percikan Api (optimized)
-  setInterval(() => {
-    const sparks = document.querySelectorAll(".spark");
-    if (sparks.length > 50) sparks[0].remove(); // max 50 sparks aktif
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-    const spark = document.createElement("div");
-    spark.className = "spark";
-    spark.style.left = Math.random() * window.innerWidth + "px";
-    spark.style.top = window.innerHeight + "px";
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
 
-    const colors = ["red", "orange", "yellow"];
-    spark.style.background = colors[Math.floor(Math.random() * colors.length)];
+  let sparks = [];
 
-    body.appendChild(spark);
-    setTimeout(() => spark.remove(), 4000);
-  }, 400); // lebih jarang → enteng
-  
+  function spawnSpark() {
+    sparks.push({
+      x: Math.random() * canvas.width,
+      y: canvas.height,
+      speed: 1 + Math.random() * 2,
+      size: 2 + Math.random() * 3,
+      color: ["red", "orange", "yellow"][Math.floor(Math.random() * 3)]
+    });
+  }
 
-  // 🔊 Kontrol suara background
-  const fireSound = document.getElementById("fire-sound");
-  if (fireSound) fireSound.volume = 0.25;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    sparks.forEach((s, i) => {
+      ctx.fillStyle = s.color;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+      ctx.fill();
+      s.y -= s.speed;
+      if (s.y < 0) sparks.splice(i, 1);
+    });
+    requestAnimationFrame(draw);
+  }
 
-  // ⚡ Order Button SFX + Animasi Glow
+  setInterval(spawnSpark, 200);
+  draw();
+
+  // 🔊 Order Button SFX
   const orderButtons = document.querySelectorAll(".order-btn");
   const orderSfx = document.getElementById("order-sfx");
-  if (orderButtons && orderSfx) {
-    orderButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        orderSfx.currentTime = 0;
-        orderSfx.play();
-
-        btn.classList.add("clicked");
-        setTimeout(() => btn.classList.remove("clicked"), 300);
-      });
+  orderButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      orderSfx.currentTime = 0;
+      orderSfx.play();
+      btn.classList.add("clicked");
+      setTimeout(() => btn.classList.remove("clicked"), 300);
     });
-  }
+  });
 
-  // 🎵 Tombol ON/OFF Sound
+  // 🔊 Toggle Fire Sound
+  const fireSound = document.getElementById("fire-sound");
   const soundToggle = document.getElementById("sound-toggle");
-  if (soundToggle && fireSound) {
-    soundToggle.addEventListener("click", () => {
-      if (fireSound.muted) {
-        fireSound.muted = false;
-        soundToggle.textContent = "🔊";
-      } else {
-        fireSound.muted = true;
-        soundToggle.textContent = "🔇";
-      }
-    });
-  }
+  soundToggle.addEventListener("click", () => {
+    fireSound.muted = !fireSound.muted;
+    soundToggle.textContent = fireSound.muted ? "🔇" : "🔊";
+  });
 });
