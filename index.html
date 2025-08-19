@@ -1,180 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pricelist Rey</title>
-  
-  <!-- Font Esport Orbitron -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
-
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Arial Black', sans-serif;
-      background: linear-gradient(to bottom, #000000, #1a0000);
-      color: white;
-      overflow-x: hidden;
-    }
-
-    /* Header */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: black;
-      padding: 15px 0;
-      text-align: center;
-      border-bottom: 2px solid red;
-      z-index: 1000;
-    }
-
-    header h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 32px;
-      font-weight: 800;
-      color: red;
-      letter-spacing: 3px;
-      margin: 0;
-      animation: glow 2s infinite alternate;
-    }
-
-    /* Glow Animasi Merah */
-    @keyframes glow {
-      from { text-shadow: 0 0 10px red, 0 0 20px crimson; }
-      to { text-shadow: 0 0 25px red, 0 0 40px darkred, 0 0 60px crimson; }
-    }
-
-    /* Pricelist */
-    .pricelist {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 25px;
-      margin: 100px auto 60px auto;
-      width: 90%;
-      max-width: 500px;
-    }
-
-    .card {
-      background: rgba(0, 0, 0, 0.85);
-      border: 2px solid red;
-      border-radius: 15px;
-      padding: 15px;
-      text-align: center;
-      width: 100%;
-      box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 25px rgba(255, 0, 0, 0.9);
-    }
-
-    .card img {
-      width: 160px;
-      height: 160px;
-      object-fit: contain;
-      margin-bottom: 10px;
-      animation: logoPulse 3s infinite ease-in-out;
-    }
-
-    @keyframes logoPulse {
-      0%, 100% { filter: drop-shadow(0 0 10px red); transform: scale(1); }
-      50% { filter: drop-shadow(0 0 25px crimson); transform: scale(1.1); }
-    }
-
-    .card h3 {
-      margin: 10px 0;
-      font-size: 20px;
-      color: #fff;
-    }
-
-    .btn-order {
-      display: inline-block;
-      padding: 10px 20px;
-      background: red;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
-      transition: background 0.2s ease, transform 0.2s ease;
-      animation: buttonGlow 1.5s infinite alternate;
-    }
-
-    .btn-order:hover {
-      background: darkred;
-      transform: scale(1.05);
-    }
-
-    @keyframes buttonGlow {
-      from { box-shadow: 0 0 10px red, 0 0 20px crimson; }
-      to { box-shadow: 0 0 25px red, 0 0 40px darkred; }
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 10px;
-      background: black;
-      color: gray;
-      font-size: 13px;
-      border-top: 2px solid red;
-    }
-  </style>
+  <title>PRICELIST REY</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <h1>🔥 PRICELIST REY 🔥</h1>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo-title">
+      <img src="https://raw.githubusercontent.com/reyykfstyle/pricelistrey/main/20250819_090507.png" 
+           alt="Logo" class="logo">
+      <h1 class="title">PRICELIST REY</h1>
+    </div>
   </header>
 
-  <!-- Pricelist -->
-  <section class="pricelist">
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/reyykfstyle/pricelistrey/main/20250819_090507.png" alt="Paid Ban">
-      <h3>Paid Ban</h3>
-      <a href="https://wa.me/6282189769841?text=Halo%20kak,%20saya%20mau%20order%20Paid%20Ban" class="btn-order">Order via WhatsApp</a>
-    </div>
+  <!-- CONTENT -->
+  <main class="content">
+    <section class="pricelist">
+      <div class="card">
+        <img src="https://raw.githubusercontent.com/reyykfstyle/pricelistrey/main/20250819_090507.png" alt="Paid Ban">
+        <h2>Paid Ban</h2>
+        <a href="https://wa.me/6282189769841" target="_blank" class="order-btn">Order</a>
+      </div>
+      <div class="card">
+        <img src="https://raw.githubusercontent.com/reyykfstyle/pricelistrey/main/20250819_090507.png" alt="Paid Unban">
+        <h2>Paid Unban</h2>
+        <a href="https://wa.me/6282189769841" target="_blank" class="order-btn">Order</a>
+      </div>
+      <div class="card">
+        <img src="https://raw.githubusercontent.com/reyykfstyle/pricelistrey/main/20250819_090507.png" alt="Paid Edit">
+        <h2>Paid Edit</h2>
+        <a href="https://wa.me/6282189769841" target="_blank" class="order-btn">Order</a>
+      </div>
+      <div class="card">
+        <img src="https://raw.githubusercontent.com/reyykfstyle/pricelistrey/main/20250819_090507.png" alt="Nokos WA">
+        <h2>Nokos WA</h2>
+        <a href="https://wa.me/6282189769841" target="_blank" class="order-btn">Order</a>
+      </div>
+      <div class="card">
+        <img src="https://raw.githubusercontent.com/reyykfstyle/pricelistrey/main/20250819_090507.png" alt="Join Murban">
+        <h2>Join Murban</h2>
+        <a href="https://wa.me/6282189769841" target="_blank" class="order-btn">Order</a>
+      </div>
+      <div class="card">
+        <img src="https://raw.githubusercontent.com/reyykfstyle/pricelistrey/main/20250819_090507.png" alt="Join Murkos">
+        <h2>Join Murkos</h2>
+        <a href="https://wa.me/6282189769841" target="_blank" class="order-btn">Order</a>
+      </div>
+    </section>
+  </main>
 
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/reyykfstyle/pricelistrey/main/20250819_090507.png" alt="Paid Unban">
-      <h3>Paid Unban</h3>
-      <a href="https://wa.me/6282189769841?text=Halo%20kak,%20saya%20mau%20order%20Paid%20Unban" class="btn-order">Order via WhatsApp</a>
-    </div>
-
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/reyykfstyle/pricelistrey/main/20250819_090507.png" alt="Paid Edit">
-      <h3>Paid Edit</h3>
-      <a href="https://wa.me/6282189769841?text=Halo%20kak,%20saya%20mau%20order%20Paid%20Edit" class="btn-order">Order via WhatsApp</a>
-    </div>
-
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/reyykfstyle/pricelistrey/main/20250819_090507.png" alt="Nokos WA">
-      <h3>Nokos WA</h3>
-      <a href="https://wa.me/6282189769841?text=Halo%20kak,%20saya%20mau%20order%20Nokos%20WA" class="btn-order">Order via WhatsApp</a>
-    </div>
-
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/reyykfstyle/pricelistrey/main/20250819_090507.png" alt="Join Murban">
-      <h3>Join Murban</h3>
-      <a href="https://wa.me/6282189769841?text=Halo%20kak,%20saya%20mau%20order%20Join%20Murban" class="btn-order">Order via WhatsApp</a>
-    </div>
-
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/reyykfstyle/pricelistrey/main/20250819_090507.png" alt="Join Murkos">
-      <h3>Join Murkos</h3>
-      <a href="https://wa.me/6282189769841?text=Halo%20kak,%20saya%20mau%20order%20Join%20Murkos" class="btn-order">Order via WhatsApp</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    © 2025 REYYKFSTYLE. All Rights Reserved.
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2025 REYYKFSTYLE. All Rights Reserved.</p>
   </footer>
 
 </body>
