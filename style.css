@@ -5,11 +5,21 @@
   box-sizing: border-box;
 }
 
+/* Body */
 body {
   font-family: Arial, sans-serif;
   color: white;
-  background: linear-gradient(135deg, #000, #400, #900);
+  background: linear-gradient(135deg, #000, #200, #600);
   overflow-x: hidden;
+  padding-top: 80px;
+}
+
+/* Canvas */
+#sparkCanvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
 }
 
 /* Header */
@@ -17,37 +27,30 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 25px;
-  background: rgba(0, 0, 0, 0.8);
-  position: sticky;
-  top: 0;
+  padding: 12px 20px;
+  background: rgba(0,0,0,0.95);
+  position: fixed;
+  top: 0; left: 0; right: 0;
   z-index: 10;
+  border-bottom: 2px solid red;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+  height: 45px;
+  border-radius: 10px;
 }
 
-.logo img {
-  width: 55px;
-  height: auto;
-}
-
-.logo h1 {
-  font-size: 28px;
-  font-family: Impact, sans-serif;
+.title {
+  font-size: 22px;
+  font-weight: bold;
   color: red;
-  text-shadow: 0 0 10px black, 0 0 20px red;
-}
-
-#sound-toggle {
-  font-size: 24px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: white;
+  text-shadow: 0 0 8px black;
 }
 
 /* Pricelist */
@@ -55,45 +58,43 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
-  padding: 40px;
+  padding: 30px;
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
 .card {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0,0,0,0.8);
   border: 2px solid red;
   border-radius: 15px;
-  padding: 25px;
+  padding: 20px;
   text-align: center;
-  box-shadow: 0 0 15px red;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px red;
 }
 
 .card-logo {
   width: 80px;
-  margin-bottom: 10px;
+  height: 80px;
+  margin-bottom: 12px;
+  border-radius: 12px;
 }
 
-.card h2 {
-  margin-bottom: 15px;
-  color: #ff4040;
-  font-size: 20px;
-}
-
+/* Tombol Order */
 .order-btn {
   display: inline-block;
-  padding: 12px 20px;
+  padding: 10px 18px;
   background: red;
   color: white;
   text-decoration: none;
   border-radius: 10px;
+  margin-top: 10px;
   font-weight: bold;
-  transition: all 0.3s ease;
+  transition: 0.3s;
 }
 
 .order-btn:hover {
@@ -101,33 +102,13 @@ body {
   box-shadow: 0 0 15px red;
 }
 
-.order-btn.clicked {
-  box-shadow: 0 0 20px 5px red;
-  transform: scale(1.1);
-}
-
-/* Percikan */
-.spark {
-  position: fixed;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  opacity: 0.8;
-  animation: rise 4s linear forwards;
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes rise {
-  0% { transform: translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
-}
-
 /* Footer */
 footer {
-  background: rgba(0, 0, 0, 0.9);
-  padding: 15px;
+  background: rgba(0,0,0,0.95);
+  padding: 10px;
   text-align: center;
-  font-size: 14px;
+  font-size: 13px;
   border-top: 2px solid red;
+  position: relative;
+  z-index: 5;
 }
