@@ -7,68 +7,65 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Canvas untuk percikan -->
+  <canvas id="sparkCanvas"></canvas>
+
   <!-- Header -->
   <header class="header">
-    <div class="logo">
-      <img src="20250819_090507.png" alt="Logo REYYKFSTYLE">
-      <h1>PRICELIST REY</h1>
+    <div class="logo-container">
+      <img src="20250819_090507.png" alt="Logo" class="logo">
+      <h1 class="title">PRICELIST REY</h1>
     </div>
     <button id="sound-toggle">🔊</button>
   </header>
 
-  <!-- Pricelist -->
-  <main class="pricelist">
+  <!-- Pricelist Section -->
+  <section class="pricelist">
     <div class="card">
-      <img src="20250819_090507.png" class="card-logo" alt="Logo">
+      <img src="20250819_090507.png" alt="Logo" class="card-logo">
       <h2>Paid Ban</h2>
-      <a href="https://wa.me/6282189769841" class="order-btn">🛒 ORDER</a>
+      <a href="https://wa.me/6282189769841?text=Halo%20saya%20ingin%20order%20Paid%20Ban" class="order-btn">🛒 Order</a>
     </div>
 
     <div class="card">
-      <img src="20250819_090507.png" class="card-logo" alt="Logo">
+      <img src="20250819_090507.png" alt="Logo" class="card-logo">
       <h2>Paid Unban</h2>
-      <a href="https://wa.me/6282189769841" class="order-btn">🛒 ORDER</a>
+      <a href="https://wa.me/6282189769841?text=Halo%20saya%20ingin%20order%20Paid%20Unban" class="order-btn">🛒 Order</a>
     </div>
 
     <div class="card">
-      <img src="20250819_090507.png" class="card-logo" alt="Logo">
+      <img src="20250819_090507.png" alt="Logo" class="card-logo">
       <h2>Paid Edit</h2>
-      <a href="https://wa.me/6282189769841" class="order-btn">🛒 ORDER</a>
+      <a href="https://wa.me/6282189769841?text=Halo%20saya%20ingin%20order%20Paid%20Edit" class="order-btn">🛒 Order</a>
     </div>
 
     <div class="card">
-      <img src="20250819_090507.png" class="card-logo" alt="Logo">
+      <img src="20250819_090507.png" alt="Logo" class="card-logo">
       <h2>Nokos WA</h2>
-      <a href="https://wa.me/6282189769841" class="order-btn">🛒 ORDER</a>
+      <a href="https://wa.me/6282189769841?text=Halo%20saya%20ingin%20order%20Nokos%20WA" class="order-btn">🛒 Order</a>
     </div>
 
     <div class="card">
-      <img src="20250819_090507.png" class="card-logo" alt="Logo">
+      <img src="20250819_090507.png" alt="Logo" class="card-logo">
       <h2>Join Murban</h2>
-      <a href="https://wa.me/6282189769841" class="order-btn">🛒 ORDER</a>
+      <a href="https://wa.me/6282189769841?text=Halo%20saya%20ingin%20order%20Join%20Murban" class="order-btn">🛒 Order</a>
     </div>
 
     <div class="card">
-      <img src="20250819_090507.png" class="card-logo" alt="Logo">
+      <img src="20250819_090507.png" alt="Logo" class="card-logo">
       <h2>Join Murkos</h2>
-      <a href="https://wa.me/6282189769841" class="order-btn">🛒 ORDER</a>
+      <a href="https://wa.me/6282189769841?text=Halo%20saya%20ingin%20order%20Join%20Murkos" class="order-btn">🛒 Order</a>
     </div>
-  </main>
+  </section>
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 REYYKFSTYLE. All rights reserved.</p>
+    <p>© 2025 REYYKFSTYLE. All Rights Reserved.</p>
   </footer>
 
-  <!-- Backsound -->
-  <audio id="fire-sound" autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_b4d546d6b1.mp3?filename=fireplace-burning-14644.mp3" type="audio/mpeg">
-  </audio>
-
-  <!-- Order Click Sound -->
-  <audio id="order-sfx">
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_b4d546d6b1.mp3?filename=click-fast-1511.mp3" type="audio/mpeg">
-  </audio>
+  <!-- Audio -->
+  <audio id="order-sfx" src="order-sfx.mp3" preload="auto"></audio>
+  <audio id="fire-sound" src="fire-sound.mp3" autoplay loop></audio>
 
   <script src="script.js"></script>
 </body>
