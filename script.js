@@ -1,67 +1,37 @@
-// Canvas background api
-const canvas = document.createElement("canvas");
-const ctx = canvas.getContext("2d");
-document.body.appendChild(canvas);
+// Brutal Percikan Api
+document.addEventListener("DOMContentLoaded", () => {
+  const body = document.body;
 
-canvas.style.position = "fixed";
-canvas.style.top = "0";
-canvas.style.left = "0";
-canvas.style.zIndex = "-1";
+  setInterval(() => {
+    const spark = document.createElement("div");
+    spark.className = "spark";
+    spark.style.left = Math.random() * window.innerWidth + "px";
+    spark.style.top = window.innerHeight + "px";
 
-let sparks = [];
+    // Warna random merah–kuning–oranye
+    const colors = ["red", "orange", "yellow"];
+    spark.style.background = colors[Math.floor(Math.random() * colors.length)];
 
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
+    body.appendChild(spark);
+    setTimeout(() => spark.remove(), 4000);
+  }, 150); // makin kecil makin rame
+});
 
-// Buat percikan api baru
-function createSpark() {
-  const x = Math.random() * canvas.width;
-  const y = canvas.height + 10;
-  const size = Math.random() * 3 + 2;
-  const speedY = Math.random() * -2 - 1;
-  const speedX = (Math.random() - 0.5) * 1;
-  const alpha = Math.random() * 0.5 + 0.5;
-
-  sparks.push({ x, y, size, speedY, speedX, alpha });
-}
-
-// Update posisi & gambar percikan
-function updateSparks() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  for (let i = 0; i < sparks.length; i++) {
-    let s = sparks[i];
-    s.x += s.speedX;
-    s.y += s.speedY;
-    s.alpha -= 0.005;
-
-    // Warna percikan random antara merah → oranye → kuning
-    let gradient = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.size * 3);
-    gradient.addColorStop(0, `rgba(255, ${Math.floor(Math.random() * 150)}, 0, ${s.alpha})`);
-    gradient.addColorStop(1, "transparent");
-
-    ctx.fillStyle = gradient;
-    ctx.beginPath();
-    ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Hapus kalau sudah hilang
-    if (s.alpha <= 0) {
-      sparks.splice(i, 1);
-      i--;
-    }
+// Tambahkan CSS sparks lewat JS
+const style = document.createElement("style");
+style.innerHTML = `
+  .spark {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    opacity: 0.9;
+    animation: rise 4s linear forwards;
+    z-index: 0;
   }
-}
-
-// Loop animasi
-function animate() {
-  if (Math.random() < 0.3) createSpark(); // kecepatan spawn percikan
-  updateSparks();
-  requestAnimationFrame(animate);
-}
-
-animate();
+  @keyframes rise {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-120vh) scale(0.3); opacity: 0; }
+  }
+`;
+document.head.appendChild(style);
