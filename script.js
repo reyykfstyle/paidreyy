@@ -37,24 +37,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setInterval(spawnSpark, 200);
   draw();
-
-  // 🔊 Order Button SFX
-  const orderButtons = document.querySelectorAll(".order-btn");
-  const orderSfx = document.getElementById("order-sfx");
-  orderButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      orderSfx.currentTime = 0;
-      orderSfx.play();
-      btn.classList.add("clicked");
-      setTimeout(() => btn.classList.remove("clicked"), 300);
-    });
-  });
-
-  // 🔊 Toggle Fire Sound
-  const fireSound = document.getElementById("fire-sound");
-  const soundToggle = document.getElementById("sound-toggle");
-  soundToggle.addEventListener("click", () => {
-    fireSound.muted = !fireSound.muted;
-    soundToggle.textContent = fireSound.muted ? "🔇" : "🔊";
-  });
 });
