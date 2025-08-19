@@ -1,8 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
 
-  // 🔥 Brutal Percikan Api
+  // 🔥 Brutal Percikan Api (optimized)
   setInterval(() => {
+    const sparks = document.querySelectorAll(".spark");
+    if (sparks.length > 50) sparks[0].remove(); // max 50 sparks aktif
+
     const spark = document.createElement("div");
     spark.className = "spark";
     spark.style.left = Math.random() * window.innerWidth + "px";
@@ -13,22 +16,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     body.appendChild(spark);
     setTimeout(() => spark.remove(), 4000);
-  }, 150);
+  }, 400); // lebih jarang → enteng
+  
 
-  // 🔊 Kontrol suara background (fire crackling)
+  // 🔊 Kontrol suara background
   const fireSound = document.getElementById("fire-sound");
-  if (fireSound) fireSound.volume = 0.3;
+  if (fireSound) fireSound.volume = 0.25;
 
-  // ⚡ Order Button SFX
+  // ⚡ Order Button SFX + Animasi Glow
   const orderButtons = document.querySelectorAll(".order-btn");
   const orderSfx = document.getElementById("order-sfx");
   if (orderButtons && orderSfx) {
     orderButtons.forEach(btn => {
       btn.addEventListener("click", () => {
-        orderSfx.currentTime = 0; // reset biar bisa cepat diulang
+        orderSfx.currentTime = 0;
         orderSfx.play();
 
-        // 🔥 Animasi glow brutal saat klik
         btn.classList.add("clicked");
         setTimeout(() => btn.classList.remove("clicked"), 300);
       });
