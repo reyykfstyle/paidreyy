@@ -1,4 +1,4 @@
-// ====== Percikan Api di Background ====== //
+// ====== Percikan Api Background (tetap sama) ====== //
 const canvas = document.createElement("canvas");
 const ctx = canvas.getContext("2d");
 document.body.appendChild(canvas);
@@ -51,7 +51,6 @@ function animate() {
   }
   requestAnimationFrame(animate);
 }
-
 animate();
 
 window.addEventListener("resize", () => {
@@ -59,10 +58,16 @@ window.addEventListener("resize", () => {
   canvas.height = window.innerHeight;
 });
 
-// ====== Tombol Order WhatsApp ====== //
+// ====== Tombol Order WhatsApp (per produk) ====== //
 document.querySelectorAll(".order-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const message = encodeURIComponent(`Halo, saya ingin order: ${btn.dataset.product}`);
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const product =
+      btn.dataset.product?.trim() ||
+      btn.closest(".card")?.querySelector("h2")?.textContent?.trim() ||
+      "Order";
+
+    const message = encodeURIComponent(`Halo kak, saya mau order: ${product}`);
     window.open(`https://wa.me/6282189769841?text=${message}`, "_blank");
   });
 });
