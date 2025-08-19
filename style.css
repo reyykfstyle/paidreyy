@@ -1,123 +1,170 @@
-body {
-  margin: 0;
-  font-family: 'Arial Black', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+html, body {
   background: linear-gradient(to bottom, #000000, #1a0000);
-  color: white;
+  min-height: 100%;
+  width: 100%;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: 'Orbitron', sans-serif;
 }
 
-/* Header */
-header {
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  padding: 8px 18px;
+  background: rgba(0, 0, 0, 0.95);
+  border-bottom: 2px solid red;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  background: black;
-  padding: 15px 0;
-  text-align: center;
-  border-bottom: 2px solid red;
-  z-index: 1000;
+  right: 0;
+  z-index: 100;
 }
 
-header h1 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 32px;
-  font-weight: 800;
-  color: red;
-  letter-spacing: 3px;
-  margin: 0;
-  animation: glow 2s infinite alternate;
-}
-
-/* Glow Animasi Merah */
-@keyframes glow {
-  from { text-shadow: 0 0 10px red, 0 0 20px crimson; }
-  to { text-shadow: 0 0 25px red, 0 0 40px darkred, 0 0 60px crimson; }
-}
-
-/* Pricelist */
-.pricelist {
+.logo-title {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 25px;
-  margin: 100px auto 60px auto;
-  width: 90%;
-  max-width: 500px;
+  gap: 10px;
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.title {
+  font-size: 28px;
+  color: #ff0000;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px #ff0000,
+               0 0 20px #ff0000,
+               0 0 30px #ff0000,
+               0 0 40px #ff1a1a;
+  animation: neonGlow 2s infinite alternate;
+}
+
+@keyframes neonGlow {
+  from {
+    text-shadow: 0 0 10px #ff0000,
+                 0 0 20px #ff1a1a,
+                 0 0 30px #ff3333,
+                 0 0 40px #ff4d4d;
+  }
+  to {
+    text-shadow: 0 0 20px #ff1a1a,
+                 0 0 30px #ff3333,
+                 0 0 40px #ff6666,
+                 0 0 60px #ff9999;
+  }
+}
+
+/* CONTENT */
+.content {
+  margin-top: 100px;
+  padding: 20px;
+}
+
+.pricelist {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
 }
 
 .card {
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.9);
   border: 2px solid red;
-  border-radius: 15px;
-  padding: 15px;
+  border-radius: 12px;
+  padding: 20px;
   text-align: center;
-  width: 100%;
-  box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  opacity: 0;
-  transform: translateY(40px);
-}
-
-.card.show {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.6s ease-out;
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
 }
 
 .card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 25px rgba(255, 0, 0, 0.9);
+  transform: scale(1.08);
+  box-shadow: 0 0 40px rgba(255, 0, 0, 1);
+}
+
+/* efek glow di pinggiran card */
+.card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, red, darkred, black, red);
+  z-index: -1;
+  filter: blur(15px);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .card img {
-  width: 160px;
-  height: 160px;
-  object-fit: contain;
-  margin-bottom: 10px;
-  animation: logoPulse 3s infinite ease-in-out;
+  width: 90px;
+  height: 90px;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 0 8px red);
 }
 
-@keyframes logoPulse {
-  0%, 100% { filter: drop-shadow(0 0 10px red); transform: scale(1); }
-  50% { filter: drop-shadow(0 0 25px crimson); transform: scale(1.1); }
-}
-
-.card h3 {
-  margin: 10px 0;
-  font-size: 20px;
+.card h2 {
   color: #fff;
+  margin-bottom: 12px;
+  font-size: 20px;
 }
 
-.btn-order {
+/* tombol dengan border animasi */
+.order-btn {
   display: inline-block;
-  padding: 10px 20px;
-  background: red;
+  padding: 10px 25px;
+  background: black;
   color: white;
   text-decoration: none;
   border-radius: 8px;
   font-weight: bold;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
-  transition: background 0.2s ease, transform 0.2s ease;
-  animation: buttonGlow 1.5s infinite alternate;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s;
+  border: 2px solid red;
 }
 
-.btn-order:hover {
-  background: darkred;
-  transform: scale(1.05);
+.order-btn::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, red, transparent);
+  transition: 0.5s;
 }
 
-@keyframes buttonGlow {
-  from { box-shadow: 0 0 10px red, 0 0 20px crimson; }
-  to { box-shadow: 0 0 25px red, 0 0 40px darkred; }
+.order-btn:hover::before {
+  left: 100%;
 }
 
-/* Footer */
-footer {
+.order-btn:hover {
+  color: #ff3333;
+  box-shadow: 0 0 20px red;
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 50px;
+  padding: 15px;
   text-align: center;
-  padding: 10px;
-  background: black;
-  color: gray;
-  font-size: 13px;
+  color: white;
+  background: rgba(0,0,0,0.95);
   border-top: 2px solid red;
+  font-size: 14px;
 }
