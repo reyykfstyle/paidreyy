@@ -1,349 +1,133 @@
-/* ============================
-   RESET & BASE
-============================ */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html, body { height: 100%; }
-:root{
-  --red:#ff1a1a;
-  --crimson:#dc143c;
-  --dark:#000;
-  --dark-1:#0a0000;
-  --dark-2:#1a0000;
-  --dark-3:#330000;
-  --glow: 0 0 20px var(--red), 0 0 40px var(--crimson);
-  --border-red: 2px solid var(--red);
-  --radius: 14px;
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
+body {
   font-family: Arial, sans-serif;
-  color:#fff;
-  background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(255,0,0,0.15), transparent 60%),
-    radial-gradient(900px 500px at 90% 0%, rgba(255,0,0,0.12), transparent 60%),
-    linear-gradient(135deg, var(--dark), var(--dark-2), var(--dark-3), var(--dark));
-  background-size: 400% 400%;
-  animation: bgShift 18s ease-in-out infinite;
+  color: white;
+  background: linear-gradient(135deg, #000, #400, #900);
   overflow-x: hidden;
 }
 
-/* Animated gradient background */
-@keyframes bgShift{
-  0%{ background-position: 0% 50%; }
-  50%{ background-position: 100% 50%; }
-  100%{ background-position: 0% 50%; }
-}
-
-/* ============================
-   HEADER (brutal glow)
-============================ */
-header{
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background: rgba(0, 0, 0, 0.8);
   position: sticky;
   top: 0;
-  z-index: 999;
-  background: linear-gradient(90deg, #000 0%, #120000 35%, #1a0000 65%, #000 100%);
-  border-bottom: 3px solid var(--red);
-  padding: 16px 20px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  box-shadow: 0 0 12px rgba(255,0,0,0.35);
-  isolation:isolate;
-}
-header::after{
-  content:"";
-  position:absolute; inset:auto 0 -3px 0;
-  height:3px; filter: blur(6px);
-  background: radial-gradient(20px 6px at 50% 50%, rgba(255,0,0,0.9), transparent 70%);
-  opacity:.7; animation: linePulse 2.2s infinite ease-in-out;
-}
-@keyframes linePulse{
-  0%,100%{opacity:.35; transform: scaleX(0.8)}
-  50%{opacity:.9; transform: scaleX(1)}
+  z-index: 10;
 }
 
-.logo-container{
-  display:flex; align-items:center; gap:14px;
-  padding: 6px 12px; border-radius: 999px;
-  background: rgba(10,0,0,0.35);
-  border: 1px solid rgba(255,0,0,0.35);
-  box-shadow: inset 0 0 12px rgba(255,0,0,0.15);
-  backdrop-filter: blur(4px);
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-.logo{
-  height: 52px; width:auto; object-fit:contain;
-  filter: drop-shadow(0 0 6px rgba(255,0,0,0.6));
-  transition: transform .6s ease, filter .3s ease;
-  border-radius: 50%;
-  box-shadow: 0 0 8px rgba(255,0,0,.4), inset 0 0 6px rgba(255,0,0,.25);
-}
-.logo:hover{ transform: rotate(360deg) scale(1.18); filter: drop-shadow(0 0 14px rgba(255,0,0,0.9)); }
-
-.site-title{
-  font-family: 'Orbitron', sans-serif;
-  font-size: 28px; font-weight: 700; letter-spacing: 2px;
-  background: linear-gradient(90deg, #ff4d4d, #fff, #ff4d4d, #ff1a1a);
-  -webkit-background-clip:text; -webkit-text-fill-color: transparent;
-  background-size: 300% 300%;
-  animation: titleShine 5.5s linear infinite, titlePulse 2.4s ease-in-out infinite;
-  text-shadow: 0 0 8px rgba(255,0,0,0.4);
-}
-@keyframes titleShine{
-  0%{background-position: 0% 50%;}
-  100%{background-position: 100% 50%;}
-}
-@keyframes titlePulse{
-  0%,100%{ text-shadow: 0 0 10px #ff2a2a, 0 0 22px #c00; }
-  50%{ text-shadow: 0 0 24px #ff4d4d, 0 0 48px #f00; }
+.logo img {
+  width: 55px;
+  height: auto;
 }
 
-/* ============================
-   GRID / PRICELIST
-============================ */
-.pricelist{
-  padding: 28px clamp(16px, 3vw, 40px);
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 26px;
+.logo h1 {
+  font-size: 28px;
+  font-family: Impact, sans-serif;
+  color: red;
+  text-shadow: 0 0 10px black, 0 0 20px red;
 }
 
-/* ============================
-   CARD (heavy glow + breathing)
-============================ */
-.card{
-  position:relative;
-  background: linear-gradient(180deg, rgba(25,0,0,.95), rgba(10,0,0,.92));
-  border: var(--border-red);
-  border-radius: var(--radius);
-  padding: 28px 18px;
-  text-align:center;
-  box-shadow: 0 0 24px rgba(255,0,0,.45), inset 0 0 16px rgba(255,0,0,.25);
-  overflow:hidden;
-  transform: translateZ(0);
-  animation: breathe 3.2s ease-in-out infinite, cardGlow 2.2s ease-in-out infinite;
-}
-@keyframes breathe{
-  0%{ transform: scale(1); }
-  50%{ transform: scale(1.035); }
-  100%{ transform: scale(1); }
-}
-@keyframes cardGlow{
-  0%,100%{ box-shadow: 0 0 18px rgba(255,0,0,.35), inset 0 0 12px rgba(255,0,0,.18); }
-  50%{ box-shadow: 0 0 36px rgba(255,0,0,.9), inset 0 0 24px rgba(255,0,0,.35); }
+#sound-toggle {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
 }
 
-/* Decorative sparks per-card */
-.card::before,.card::after{
-  content:"";
-  position:absolute; border-radius:50%;
-  pointer-events:none;
-}
-.card::before{
-  width: 120px; height: 120px;
-  left:-40px; top:-40px;
-  background: radial-gradient(circle, rgba(255,0,0,.45), transparent 70%);
-  animation: ember 4.6s linear infinite;
-}
-.card::after{
-  width: 140px; height: 140px;
-  right:-50px; bottom:-50px;
-  background: radial-gradient(circle, rgba(255,38,0,.32), transparent 70%);
-  animation: ember 5.2s linear infinite reverse;
-}
-@keyframes ember{
-  0%{ transform: scale(.7) rotate(0); opacity:.8; }
-  50%{ transform: scale(1.15) rotate(180deg); opacity:.38; }
-  100%{ transform: scale(.7) rotate(360deg); opacity:.8; }
+/* Pricelist */
+.pricelist {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 40px;
+  position: relative;
+  z-index: 2;
 }
 
-/* Card logo */
-.card-logo{
-  width: 124px; height:auto; margin-bottom: 14px;
-  border-radius: 50%;
-  border: 2px solid rgba(255,0,0,.65);
-  box-shadow: 0 0 16px rgba(255,0,0,.6), inset 0 0 10px rgba(255,0,0,.35);
-  transition: transform .35s ease, filter .35s ease;
-  filter: drop-shadow(0 0 10px rgba(255,0,0,.55));
-}
-.card-logo:hover{ transform: scale(1.18) rotate(-8deg); filter: drop-shadow(0 0 18px rgba(255,0,0,.95)); }
-
-/* Title in card */
-.card h2{
-  font-size: 22px; margin: 10px 0 18px;
-  text-shadow: 0 0 12px rgba(255,0,0,.6), 0 0 28px rgba(255,0,0,.45);
-  letter-spacing: .5px;
-  position:relative;
-}
-.card h2::after{
-  content:"";
-  display:block; margin: 10px auto 0; width: 60px; height:2px;
-  background: linear-gradient(90deg, transparent, var(--red), transparent);
-  filter: blur(1px);
+.card {
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid red;
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 0 15px red;
+  transition: transform 0.3s ease;
 }
 
-/* Order button (neon, blink, shake on hover) */
-.order-btn{
-  display:inline-block;
-  padding: 12px 22px;
-  border-radius: 12px;
-  font-weight: 800; letter-spacing:.4px;
-  text-decoration:none; color:#fff;
-  background: linear-gradient(90deg, #c70000, #ff1a1a, #c70000);
-  background-size:200% 200%;
-  border: 2px solid rgba(255,0,0,.65);
-  box-shadow: 0 0 14px rgba(255,0,0,.7), inset 0 0 10px rgba(255,0,0,.35);
-  transition: transform .2s ease, filter .2s ease;
-  animation: btnPulse 1.6s ease-in-out infinite, btnShimmer 5s linear infinite;
-}
-@keyframes btnPulse{
-  0%,100%{ box-shadow: 0 0 14px rgba(255,0,0,.6), inset 0 0 8px rgba(255,0,0,.3); }
-  50%{ box-shadow: 0 0 28px rgba(255,0,0,1), inset 0 0 16px rgba(255,0,0,.55); }
-}
-@keyframes btnShimmer{
-  0%{ background-position: 0% 50%; }
-  100%{ background-position: 100% 50%; }
-}
-.order-btn:hover{
-  transform: scale(1.08) rotate(-1.5deg);
-  animation: btnPulse .9s ease-in-out infinite;
-  filter: drop-shadow(0 0 18px rgba(255,0,0,1));
+.card:hover {
+  transform: scale(1.05);
 }
 
-/* ============================
-   GLOBAL SPARKS (from JS)
-============================ */
-.spark{
-  /* JS will inject base styles; we reinforce glow here */
-  box-shadow: 0 0 10px rgba(255,0,0,.8), 0 0 22px rgba(255,120,0,.7);
-  mix-blend-mode: screen;
+.card-logo {
+  width: 80px;
+  margin-bottom: 10px;
 }
 
-/* ============================
-   UTILITY GLOWS & DECOS
-============================ */
-.glow-soft{ box-shadow: 0 0 12px rgba(255,0,0,.35); }
-.glow-hard{ box-shadow: 0 0 32px rgba(255,0,0,.95), 0 0 64px rgba(255,0,0,.6); }
-.border-red{ border: var(--border-red); }
-.round{ border-radius: var(--radius); }
-.blur-bg{ backdrop-filter: blur(6px); }
-.no-select{ user-select:none; }
-
-/* ============================
-   FOOTER
-============================ */
-footer{
-  position:relative;
-  text-align:center;
-  padding: 16px 12px;
-  background:#000;
-  border-top: 2px solid var(--red);
-  color:#bbb; font-size:14px;
-  box-shadow: 0 -6px 16px rgba(255,0,0,.25);
-}
-footer::before{
-  content:"";
-  position:absolute; inset: -2px 0 auto 0; height:2px;
-  background: radial-gradient(20px 6px at 50% 50%, rgba(255,0,0,0.8), transparent 70%);
-  filter: blur(4px);
+.card h2 {
+  margin-bottom: 15px;
+  color: #ff4040;
+  font-size: 20px;
 }
 
-/* ============================
-   SCROLLBAR & SELECTION
-============================ */
-::selection{ background: rgba(255,0,0,.55); color:#fff; }
-::-webkit-scrollbar{ width:10px; height:10px; }
-::-webkit-scrollbar-track{ background:#0a0000; }
-::-webkit-scrollbar-thumb{
-  background: linear-gradient(180deg, #700, #f00, #700);
+.order-btn {
+  display: inline-block;
+  padding: 12px 20px;
+  background: red;
+  color: white;
+  text-decoration: none;
   border-radius: 10px;
-  box-shadow: inset 0 0 6px rgba(0,0,0,.6);
-}
-::-webkit-scrollbar-thumb:hover{ background: linear-gradient(180deg, #900, #ff3333, #900); }
-
-/* ============================
-   MEDIA QUERIES (responsive)
-============================ */
-@media (max-width: 1024px){
-  .site-title{ font-size: 26px; }
-  .card{ padding: 26px 16px; }
-  .card-logo{ width: 116px; }
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
-@media (max-width: 768px){
-  .logo{ height: 48px; }
-  .site-title{ font-size: 24px; letter-spacing: 1.5px; }
-  .pricelist{ gap: 22px; }
-  .card{ border-radius: 12px; }
-  .order-btn{ padding: 11px 20px; }
+.order-btn:hover {
+  background: darkred;
+  box-shadow: 0 0 15px red;
 }
 
-@media (max-width: 520px){
-  .logo-container{ gap: 10px; padding: 6px 10px; }
-  .logo{ height: 44px; }
-  .site-title{ font-size: 20px; letter-spacing: 1px; }
-  .pricelist{ padding: 22px 14px; gap:18px; }
-  .card-logo{ width: 108px; }
-  .order-btn{ font-size: 14px; border-radius:10px; }
+.order-btn.clicked {
+  box-shadow: 0 0 20px 5px red;
+  transform: scale(1.1);
 }
 
-/* ============================
-   EXTRA ANIMATIONS (optional hooks)
-============================ */
-@keyframes shakeX{
-  0%,100%{ transform: translateX(0); }
-  20%{ transform: translateX(-4px); }
-  40%{ transform: translateX(4px); }
-  60%{ transform: translateX(-3px); }
-  80%{ transform: translateX(3px); }
-}
-@keyframes floatY{
-  0%,100%{ transform: translateY(0); }
-  50%{ transform: translateY(-6px); }
+/* Percikan */
+.spark {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: rise 4s linear forwards;
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* Apply subtle float to cards on hover */
-.card:hover{ animation: breathe 3.2s ease-in-out infinite, cardGlow 1.6s ease-in-out infinite, floatY 3.6s ease-in-out infinite; }
-
-/* ============================
-   BUTTON VARIANTS (spare)
-============================ */
-.btn-outline{
-  display:inline-block; padding: 10px 18px;
-  border-radius: 10px; border: 2px solid var(--red); color:#fff;
-  text-decoration:none; background: transparent;
-  box-shadow: 0 0 10px rgba(255,0,0,.4);
-  transition: .25s ease;
-}
-.btn-outline:hover{
-  background: rgba(255,0,0,.15);
-  transform: translateY(-1px);
-  box-shadow: 0 0 18px rgba(255,0,0,.9);
+@keyframes rise {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
 }
 
-/* ============================
-   OVERLAY GLOW (optional)
-============================ */
-.page-glow{
-  position: fixed; inset: 0; pointer-events:none; z-index: -1;
-  background:
-    radial-gradient(800px 300px at 50% -5%, rgba(255,0,0,0.18), transparent 70%),
-    radial-gradient(700px 260px at 50% 105%, rgba(255,0,0,0.12), transparent 70%);
-  mix-blend-mode: screen;
+/* Footer */
+footer {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 15px;
+  text-align: center;
+  font-size: 14px;
+  border-top: 2px solid red;
 }
-
-/* ============================
-   MICRO INTERACTIONS
-============================ */
-.card:active { transform: scale(.99); }
-.order-btn:active { transform: scale(0.98) rotate(-1deg); }
-.card h2:hover{ letter-spacing: .8px; }
-
-/* ============================
-   MISC SAFETY (z-index layers)
-============================ */
-header, .pricelist, footer { position: relative; z-index: 1; }
-
-/* ============================
-   END
-============================ */
