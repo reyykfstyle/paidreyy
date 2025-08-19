@@ -43,11 +43,13 @@ body {
 
 /* Container Pricelist */
 .container {
-  display: flex;
-  flex-direction: column; /* semua card turun kebawah */
-  gap: 20px;
+  display: block;       /* bukan grid, bukan flex */
   padding: 40px 20px;
-  align-items: center; /* biar card di tengah */
+}
+
+.container .card {
+  margin: 0 auto 20px;  /* supaya ada jarak antar card */
+  max-width: 350px;     /* biar card gak melebar */
 }
 
 /* Card */
