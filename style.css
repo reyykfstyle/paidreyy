@@ -5,142 +5,124 @@
   box-sizing: border-box;
 }
 
+/* Background Canvas */
+#fireworks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
 /* Body */
 body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #000000, #1a0000, #330000, #660000);
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #000000, #1a0000, #660000);
   color: white;
   text-align: center;
-  min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* Navbar */
-.navbar {
+/* Header */
+header {
+  background: black;
+  padding: 15px;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
-  padding: 15px 30px;
-  background: rgba(0, 0, 0, 0.85);
-  border-bottom: 2px solid red;
-  box-shadow: 0 0 15px red;
+  justify-content: center;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
+  border-bottom: 2px solid red;
 }
 
-.nav-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+header .logo {
+  height: 40px;
+  margin-right: 15px;
 }
 
-.logo {
-  height: 45px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px red;
-}
-
-.title {
-  font-size: 24px;
+header .title {
+  font-size: 28px;
   font-weight: bold;
-  color: #ff1a1a;
-  letter-spacing: 2px;
-  text-shadow: 0 0 8px #ff0000, 0 0 15px #990000;
+  color: red;
+  text-shadow: 0 0 10px red, 0 0 20px darkred;
 }
 
-/* Pricelist Container */
-.pricelist {
+/* Main Layout */
+main {
+  padding: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-  padding: 50px 30px;
-  position: relative;
-  z-index: 2;
-}
-
-/* Background Percikan */
-.pricelist::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: url('https://i.ibb.co/7JfqXxB/fire-particles.png') repeat;
-  opacity: 0.08;
-  z-index: 1;
-  animation: moveSpark 20s linear infinite;
-}
-
-@keyframes moveSpark {
-  from { background-position: 0 0; }
-  to { background-position: 500px 500px; }
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
 }
 
 /* Card */
 .card {
-  background: rgba(20, 0, 0, 0.7);
-  border: 1px solid red;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid red;
+  border-radius: 15px;
   padding: 20px;
-  border-radius: 18px;
-  box-shadow: 0 0 15px #ff0000;
-  transition: 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  z-index: 2;
+  box-shadow: 0 0 20px red, 0 0 40px rgba(255, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 1s ease forwards;
 }
 
 .card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 0 30px #ff1a1a;
+  transform: scale(1.05);
+  box-shadow: 0 0 30px red, 0 0 60px rgba(255, 0, 0, 0.8);
 }
 
+/* Card Logo */
 .card-logo {
-  width: 95px;
+  width: 90px;
   height: auto;
-  margin-bottom: 15px;
-  filter: drop-shadow(0 0 10px red);
+  margin-bottom: 10px;
 }
 
-/* Harga */
-.price {
+/* Card Title */
+.card h3 {
   font-size: 20px;
-  color: #ff4d4d;
-  font-weight: bold;
-  margin: 12px 0;
-  text-shadow: 0 0 5px #ff0000;
+  margin: 10px 0;
+  color: white;
+  text-shadow: 0 0 10px red;
 }
 
 /* Order Button */
-.order-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: linear-gradient(45deg, #ff0000, #990000);
-  color: white;
-  padding: 12px 22px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s ease;
+.order-link {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 18px;
   font-size: 16px;
-  box-shadow: 0 0 10px #ff0000;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  border: 2px solid #00aaff;
+  border-radius: 8px;
+  background: transparent;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px #00aaff, 0 0 20px rgba(0, 170, 255, 0.5);
 }
 
-.order-btn i {
-  font-size: 18px;
+.order-link:hover {
+  background: #00aaff;
+  color: black;
+  box-shadow: 0 0 20px #00aaff, 0 0 40px #00ccff;
+  transform: scale(1.1);
 }
 
-.order-btn:hover {
-  background: linear-gradient(45deg, #ff4d4d, #b30000);
-  transform: scale(1.08);
-  box-shadow: 0 0 25px #ff1a1a, 0 0 40px #cc0000;
+/* Animasi Fade */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Footer */
 footer {
   margin-top: 40px;
-  padding: 18px;
-  background: rgba(0, 0, 0, 0.9);
-  border-top: 2px solid red;
-  text-shadow: 0 0 5px red;
+  padding: 15px;
+  background: black;
   font-size: 14px;
+  color: #aaa;
+  border-top: 2px solid red;
 }
