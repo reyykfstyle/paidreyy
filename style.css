@@ -1,27 +1,21 @@
-/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Background Canvas */
-#fireworks {
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #000, #1a0000, #660000);
+  color: white;
+  overflow-x: hidden;
+}
+
+canvas#fireCanvas {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
   z-index: -1;
-}
-
-/* Body */
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #000000, #1a0000, #660000);
-  color: white;
-  text-align: center;
-  overflow-x: hidden;
 }
 
 /* Header */
@@ -31,17 +25,15 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-bottom: 2px solid red;
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 2px solid red;
 }
-
 header .logo {
   height: 40px;
   margin-right: 15px;
 }
-
 header .title {
   font-size: 28px;
   font-weight: bold;
@@ -49,11 +41,11 @@ header .title {
   text-shadow: 0 0 10px red, 0 0 20px darkred;
 }
 
-/* Main Layout */
+/* Main */
 main {
   padding: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 
@@ -65,30 +57,24 @@ main {
   padding: 20px;
   box-shadow: 0 0 20px red, 0 0 40px rgba(255, 0, 0, 0.5);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeIn 1s ease forwards;
+  text-align: center;
 }
-
 .card:hover {
   transform: scale(1.05);
   box-shadow: 0 0 30px red, 0 0 60px rgba(255, 0, 0, 0.8);
 }
-
-/* Card Logo */
 .card-logo {
-  width: 90px;
-  height: auto;
+  width: 100px;
   margin-bottom: 10px;
 }
-
-/* Card Title */
 .card h3 {
-  font-size: 20px;
+  font-size: 22px;
   margin: 10px 0;
   color: white;
   text-shadow: 0 0 10px red;
 }
 
-/* Order Button */
+/* Tombol Order */
 .order-link {
   display: inline-block;
   margin-top: 12px;
@@ -103,18 +89,10 @@ main {
   transition: all 0.3s ease;
   box-shadow: 0 0 10px #00aaff, 0 0 20px rgba(0, 170, 255, 0.5);
 }
-
 .order-link:hover {
   background: #00aaff;
   color: black;
   box-shadow: 0 0 20px #00aaff, 0 0 40px #00ccff;
-  transform: scale(1.1);
-}
-
-/* Animasi Fade */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Footer */
@@ -125,4 +103,5 @@ footer {
   font-size: 14px;
   color: #aaa;
   border-top: 2px solid red;
+  text-align: center;
 }
