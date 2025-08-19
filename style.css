@@ -1,0 +1,121 @@
+/* Import font */
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #000, #1a0000, #330000, #660000);
+  color: white;
+  min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.85);
+  border-bottom: 2px solid red;
+  position: relative;
+}
+
+.navbar .logo {
+  position: absolute;
+  left: 20px;
+}
+
+.navbar .logo img {
+  height: 65px; /* lebih kecil biar ga kepotong */
+  filter: drop-shadow(0 0 10px red);
+}
+
+.navbar .title {
+  font-family: 'Audiowide', sans-serif;
+  font-size: 28px;
+  color: red;
+  text-shadow: 0 0 10px rgba(255,0,0,0.8);
+  margin: 0;
+}
+
+/* Container */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Card */
+.card {
+  background: rgba(20, 0, 0, 0.9);
+  border: 2px solid red;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(255,0,0,0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.card h2 {
+  margin: 10px 0;
+  font-family: 'Audiowide', sans-serif;
+  color: #ff4d4d;
+}
+
+/* Card Logo */
+.card-logo {
+  width: 120px; /* lebih besar */
+  margin-bottom: 15px;
+  filter: drop-shadow(0 0 6px red);
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  padding: 10px 15px;
+  margin-top: 10px;
+  background: red;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: darkred;
+  transform: scale(1.05);
+}
+
+/* Percikan efek background */
+.card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,0,0,0.2) 10%, transparent 70%);
+  animation: splash 5s infinite linear;
+  z-index: 0;
+}
+
+@keyframes splash {
+  0% { transform: translate(0,0) rotate(0deg); }
+  100% { transform: translate(50px,50px) rotate(360deg); }
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.9);
+  border-top: 2px solid red;
+  font-size: 14px;
+  color: #ccc;
+  margin-top: 30px;
+}
