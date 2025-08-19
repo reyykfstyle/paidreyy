@@ -43,11 +43,11 @@ body {
 
 /* Container Pricelist */
 .container {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  display: flex;
+  flex-direction: column; /* semua card turun kebawah */
   gap: 20px;
   padding: 40px 20px;
+  align-items: center; /* biar card di tengah */
 }
 
 /* Card */
